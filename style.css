@@ -1,1 +1,249 @@
+:root {
+    /* Palette Colori su misura dal logo */
+    --primary-color: #000000; /* Testo generale nero */
+    --accent-red: #e31e24; /* Rosso del logo */
+    --accent-green: #009345; /* Verde del logo */
+    --bg-color: #ffffff; /* Sfondo pulito bianco */
+    --card-bg: #ffffff;
+    --border-color: #e0e0e0; /* Beige chiarissimo per bordi */
+    --success-color: #009345; /* Verde aperto (come il logo) */
+    --closed-color: #757575; /* Grigio chiuso */
+    --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.05); /* Ombra leggera prugna per coerenza */
+    --shadow-hard: 0 8px 25px rgba(0, 0, 0, 0.08); /* Ombra per hover */
+    
+    /* Nuovi Colori Social */
+    --facebook-blue: #1877F2;
+    --instagram-accent: #E1306C; /* Un rosso/viola acceso simile all'app */
+}
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    line-height: 1.5; /* Ridotto leggermente */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+/* Header & Status - COMPATTATO DRASTICAMENTE per eliminare scroll */
+header {
+    background: var(--card-bg);
+    padding: 8px 10px 5px 10px; /* Ridotto molto */
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--accent-red); /* Bordo rosso del logo */
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+#header-logo {
+    max-height: 50px; /* Logo rimpicciolito */
+    width: auto;
+    display: block;
+    margin: 0 auto 3px auto;
+}
+
+#address, #phone {
+    font-size: 10px; /* Rimpicciolito */
+    color: #666;
+    margin-top: 1px; 
+    font-weight: 500;
+}
+
+#status-bar {
+    display: inline-block;
+    font-size: 9px; /* Rimpicciolito */
+    font-weight: 700;
+    margin: 3px 0; /* Ridotto */
+    padding: 2px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.status-active { background-color: #e8f5e9; color: var(--success-color); border: 1px solid #c3e6cb; }
+.status-inactive { background-color: #f5f5f5; color: var(--closed-color); border: 1px solid #ddd; }
+
+.hub-actions {
+    display: flex;
+    gap: 6px; /* Ridotto per 4 bottoni */
+    margin-top: 8px; /* Ridotto */
+    justify-content: center;
+    max-width: 450px; /* Leggermente allargato per 4 bottoni */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hub-btn {
+    flex: 1;
+    padding: 6px 0; /* Ridotto per compattezza con 4 bottoni */
+    font-size: 11px; /* Rimpicciolito per compattezza */
+    font-weight: 600;
+    border-radius: 6px; /* Più squadrato */
+    text-decoration: none;
+    color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: var(--shadow-soft);
+}
+.hub-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hard); }
+
+.call-btn { background: var(--accent-red); } /* Rosso del logo */
+.maps-btn { background: var(--accent-green); } /* Verde del logo */
+
+/* Nuovi Stili Social */
+.facebook-btn { background: var(--facebook-blue); }
+.instagram-btn { background: var(--instagram-accent); }
+
+/* Main Container */
+main {
+    flex: 1;
+    padding: 15px 15px 20px 15px; /* Ridotto */
+    max-width: 650px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-y: auto; 
+}
+
+.loading-spinner { text-align: center; color: #888; margin-top: 20px; font-size: 13px; }
+
+/* Home State (Hub) */
+.hub-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Ridotto */
+}
+
+.hub-title {
+    font-size: 14px; /* Rimpicciolito */
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px; /* Ridotto */
+    text-align: center;
+}
+
+/* 1. Menu Nav Section */
+.menu-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Ridotto */
+}
+
+.nav-btn {
+    background: var(--card-bg);
+    border: 1px solid #e0e0e0;
+    color: var(--primary-color);
+    padding: 12px 20px; /* Ridotto */
+    border-radius: 8px; /* Più squadrato */
+    font-size: 14px; /* Rimpicciolito */
+    font-weight: 600;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    box-shadow: var(--shadow-soft);
+}
+.nav-btn:hover {
+    background-color: #fafaf7;
+    border-color: var(--accent-red); /* Bordo rosso su hover */
+    box-shadow: var(--shadow-hard);
+}
+.nav-btn .btn-arrow { color: var(--accent-green); font-size: 16px; font-weight: 700; transition: transform 0.2s;} /* Freccia verde */
+.nav-btn:hover .btn-arrow { transform: translateX(5px); }
+
+/* Sezione Impasti su misura (come Kalkerin) */
+.impasto-hub-card {
+    background: var(--card-bg);
+    padding: 10px; /* Ridotto molto */
+    border-radius: 8px;
+    border: 1px solid var(--accent-green); /* Bordo verde per "freshness" */
+    margin-bottom: 12px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+}
+.impasto-hub-title {
+    font-size: 12px; /* Rimpicciolito */
+    font-weight: 700;
+    color: var(--accent-green); /* Titolo verde fresco */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.impasto-hub-text {
+    font-size: 11px; /* Rimpicciolito */
+    color: #666;
+    margin-top: 3px;
+    font-style: italic;
+}
+
+/* 2. Orari Section - COMPATTATA DRASTICAMENTE per eliminare scroll */
+.orari-card {
+    background: var(--card-bg);
+    padding: 10px; /* Ridotto molto */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-soft);
+}
+.orari-list { 
+    font-size: 11px; /* Rimpicciolito */
+    color: #666; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 2px; /* Ridotto molto */
+    line-height: 1.3; /* Ridotto interlinea */
+}
+.orari-day { display: flex; justify-content: space-between; padding: 1px 0; }
+.orari-day.current { font-weight: 700; color: var(--success-color); background-color: #e8f5e9; border-radius: 4px; padding-left: 5px; padding-right: 5px; } /* Verde aperto */
+
+/* Menu States (Pagina interna) */
+.category-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--accent-red); /* Titolo pagina rosso */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.category-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--accent-green); /* Titoli categoria verdi */
+    margin: 20px 0 8px 0;
+    border-bottom: 2px solid var(--accent-red); /* Bordo sotto rosso */
+    padding-bottom: 6px;
+}
+
+.menu-item {
+    background: var(--card-bg);
+    padding: 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.01);
+}
+
+.item-info { flex: 1; padding-right: 18px; }
+.item-name { font-weight: 700; font-size: 14px; color: var(--primary-color); }
+.item-desc { font-size: 10px; color: #777; margin-top: 2px; font-weight: 400; font-style: italic; }
+.item-price { font-weight: 700; color: var(--accent-red); margin-left: 5px; font-size: 15px; white-space: nowrap; } /* Prezzo rosso */
+
+.back-container { margin-bottom: 15px; text-align: center;}
+.back-btn {
+    background: var(--card-bg);
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: var(--accent-green); /* Testo verde per il pulsante indietro */
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.back-btn:hover { background-color: #fafaf7; border-color: var(--accent-green); }
