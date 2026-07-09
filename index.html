@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Medico e Fisioterapico "La Cava" | Eccellenza Riabilitativa</title>
+    <style>
+        /* PREMIUM LIGHT DESIGN SYSTEM */
+        :root {
+            --canvas-bg: #F8FAFC; 
+            --surface-card: rgba(255, 255, 255, 0.7);
+            --surface-card-hover: rgba(255, 255, 255, 1);
+            --border-subtle: rgba(0, 0, 0, 0.04);
+            
+            /* Colori Identitari */
+            --brand-blue: #009FE3;
+            --brand-green: #90C31F;
+            --brand-orange: #F37021;
+            --brand-whatsapp: #25D366;
+            
+            /* Tipografia */
+            --text-primary: #0F172A; 
+            --text-secondary: #475569;
+            --text-muted: #64748B;
+            --font-display: 'Garamond', 'Georgia', serif;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+            
+            /* Ombre */
+            --shadow-sm: 0 2px 10px -1px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 12px 30px -10px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 30px 60px -15px rgba(0, 0, 0, 0.1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; font-size: 16px; background-color: var(--canvas-bg); }
+
+        body {
+            font-family: var(--font-sans); color: var(--text-primary);
+            background-color: var(--canvas-bg); line-height: 1.7; overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--canvas-bg); }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 20px; border: 2px solid var(--canvas-bg); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--brand-blue); }
+
+        ::selection { background: rgba(0, 159, 227, 0.2); color: var(--text-primary); }
+
+        /* Sfondi luce */
+        .ambient-glow-1 {
+            position: absolute; top: -10%; left: -10%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(0, 159, 227, 0.05) 0%, transparent 70%);
+            z-index: -1; pointer-events: none;
+        }
+        .ambient-glow-2 {
+            position: absolute; top: 30%; right: -20%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(144, 195, 31, 0.04) 0%, transparent 70%);
+            z-index: -1; pointer-events: none;
+        }
+
+        /* HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%); padding: 12px 6%;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03); position: sticky; top: 0; z-index: 2000;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.02);
+        }
+        .logo-container img { height: 65px; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .logo-container img:hover { transform: scale(1.04) rotate(-1deg); }
+
+        .header-buttons { display: flex; align-items: center; gap: 12px; }
+        .btn-header {
+            display: flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 12px;
+            font-weight: 600; font-size: 0.88rem; text-decoration: none; transition: all 0.3s;
+        }
+        .btn-call { background: linear-gradient(135deg, var(--brand-blue) 0%, #0077B6 100%); color: #FFF; box-shadow: 0 4px 12px rgba(0, 159, 227, 0.2); }
+        .btn-call:hover { box-shadow: 0 8px 20px rgba(0, 159, 227, 0.3); transform: translateY(-2px); }
+        .btn-instagram { background: #FFF; color: #DC2743; border: 1px solid rgba(0,0,0,0.06); box-shadow: var(--shadow-sm); }
+        .btn-instagram:hover { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: #FFF; border-color: transparent; transform: translateY(-2px); }
+        .btn-whatsapp-header { background: #FFF; border: 1px solid rgba(37, 211, 102, 0.3); color: var(--brand-whatsapp); box-shadow: var(--shadow-sm); }
+        .btn-whatsapp-header:hover { background: var(--brand-whatsapp); color: white; transform: translateY(-2px); }
+
+        /* HERO - SPLIT LAYOUT (Soluzione 1) */
+        .hero { 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            padding: 80px 6% 100px 6%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-text-side {
+            flex: 1.1;
+            text-align: left;
+        }
+
+        .hero-image-side {
+            flex: 0.9;
+            position: relative;
+        }
+
+        /* La foto viene visualizzata nel suo formato originale verticale */
+        .hero-image-side img {
+            width: 100%;
+            max-height: 700px;
+            object-fit: cover;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: block;
+        }
+
+        /* Sottile cornice sfalsata per dare un tocco premium al design */
+        .hero-image-side::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            bottom: -20px;
+            left: 20px;
+            border: 2px solid var(--brand-blue);
+            border-radius: 32px;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px; background: #FFF; border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 6px 18px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--brand-green); margin-bottom: 25px; box-shadow: var(--shadow-sm);
+        }
+        .hero-badge::before { content: ''; width: 8px; height: 8px; background-color: var(--brand-green); border-radius: 50%; display: inline-block; }
+        
+        .hero h1 {
+            font-family: var(--font-display); font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 800; line-height: 1.15;
+            letter-spacing: -0.5px; background: linear-gradient(135deg, #0F172A 30%, #009FE3 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 18px;
+        }
+        
+        .hero p.director { font-size: clamp(1.1rem, 1.8vw, 1.3rem); font-weight: 700; color: var(--brand-orange); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 25px; }
+        .hero p.subtitle { font-size: clamp(1.05rem, 1.3vw, 1.25rem); color: var(--text-secondary); max-width: 550px; font-weight: 400; line-height: 1.7; }
+
+        /* SECTIONS */
+        .section-label { text-align: center; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--brand-blue); margin-bottom: 12px; }
+        .section-title { font-family: var(--font-display); color: var(--text-primary); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 700; text-align: center; margin-bottom: 60px; position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: linear-gradient(90deg, var(--brand-blue), var(--brand-green)); border-radius: 10px; }
+
+        /* MISSION */
+        .mission { padding: 80px 5%; }
+        .mission-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .mission-card { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 40px; box-shadow: var(--shadow-sm); transition: all 0.4s; position: relative; overflow: hidden; backdrop-filter: blur(10px); }
+        .bento-large { grid-column: span 12; }
+        .bento-medium-1 { grid-column: span 6; border-top: 4px solid var(--brand-orange); }
+        .bento-medium-2 { grid-column: span 6; border-top: 4px solid var(--brand-green); }
+        .mission-icon-wrapper { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 25px; background: #FFF; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.03); }
+        .mission-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
+        .mission-card p { color: var(--text-secondary); font-size: 1.05rem; }
+        .mission-card:hover { transform: translateY(-5px); background: var(--surface-card-hover); box-shadow: var(--shadow-lg); }
+
+        /* SERVICES */
+        .services { padding: 80px 5%; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1300px; margin: 0 auto; }
+        .service-category { background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: 24px; padding: 35px; box-shadow: var(--shadow-sm); transition: all 0.4s; position: relative; }
+        .service-category::after { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 6px; border-radius: 24px 24px 0 0; }
+        .service-category:nth-child(1)::after { background: var(--brand-blue); }
+        .service-category:nth-child(2)::after { background: var(--brand-green); }
+        .service-category:nth-child(3)::after { background: var(--brand-orange); }
+        .service-category:nth-child(4)::after { background: var(--text-primary); }
+        .service-category h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: space-between; }
+        .service-category ul { list-style: none; }
+        .service-category ul li { margin-bottom: 16px; position: relative; padding-left: 24px; font-size: 0.98rem; color: var(--text-secondary); }
+        .service-desc { display: block; font-size: 0.88rem; color: var(--text-muted); font-style: italic; margin-top: 4px; line-height: 1.4; }
+        .service-category ul li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; background-color: var(--brand-blue); border-radius: 50%; box-shadow: 0 0 0 4px rgba(0, 159, 227, 0.1); transition: all 0.3s; }
+        .service-category:hover ul li::before { background-color: var(--brand-green); }
+        .service-category ul li strong { color: var(--text-primary); font-weight: 600; }
+        .service-category:hover { transform: translateY(-8px); background: var(--surface-card-hover); box-shadow: var(--shadow-md); }
+
+        /* GALLERIA INTERATTIVA DRAG & SCROLL - MIGLIORATA STRUTTURA */
+        .gallery { padding: 80px 0; background-color: var(--canvas-bg); position: relative; overflow: hidden; }
+        .gallery .section-label, .gallery .section-title { margin-left: 5%; margin-right: 5%; }
+        
+        .gallery-wrapper {
+            position: relative; width: 100vw; padding: 20px 25px; /* Spostato padding qui */
+            margin-top: 20px; overflow-x: auto; scroll-behavior: auto; 
+            -webkit-overflow-scrolling: touch; scrollbar-width: none; cursor: grab;
+        }
+        .gallery-wrapper::-webkit-scrollbar { display: none; }
+        .gallery-wrapper:active { cursor: grabbing; }
+
+        .gallery-fade-left, .gallery-fade-right {
+            position: absolute; top: 0; width: 12vw; height: 100%; z-index: 2; pointer-events: none;
+        }
+        .gallery-fade-left { left: 0; background: linear-gradient(to right, var(--canvas-bg) 0%, transparent 100%); }
+        .gallery-fade-right { right: 0; background: linear-gradient(to left, var(--canvas-bg) 0%, transparent 100%); }
+        
+        .gallery-track {
+            display: flex; gap: 25px; width: max-content;
+        }
+
+        /* I blocchi servono per il calcolo preciso del loop Javascript */
+        .gallery-set {
+            display: flex; gap: 25px;
+        }
+        
+        .gallery-set img {
+            height: 320px; width: auto; border-radius: 20px; box-shadow: var(--shadow-md);
+            object-fit: cover; transition: transform 0.4s ease, box-shadow 0.4s ease;
+            pointer-events: none; user-select: none;
+        }
+
+        /* FOOTER */
+        footer { background: #FFFFFF; padding: 90px 5% 50px 5%; border-top: 1px solid rgba(0,0,0,0.05); margin-top: 40px; }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr 1.8fr; gap: 40px; max-width: 1300px; margin: 0 auto; align-items: start; }
+        footer h4 { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; position: relative; }
+        footer h4::after { content: ''; position: absolute; left: 0; bottom: -8px; width: 24px; height: 3px; background: var(--brand-green); border-radius: 4px; }
+        .footer-logo-col img { height: 80px; margin-bottom: 10px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.04)); }
+        .footer-logo-col p.description { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-top: 15px; border-left: 3px solid var(--brand-blue); padding-left: 16px; font-style: italic; }
+        footer p.info-item { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 12px; }
+        footer p.info-item strong { color: var(--text-primary); }
+        footer a.footer-link { color: var(--brand-blue); text-decoration: none; font-weight: 600; cursor: pointer; }
+        .hours-list { list-style: none; }
+        .hours-list li { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-secondary); border-bottom: 1px solid rgba(0,0,0,0.03); padding-bottom: 4px; }
+        .hours-list li strong { color: var(--text-primary); font-weight: 600; }
+        .hours-list li.closed-day { color: var(--brand-orange); }
+        .hours-list li.closed-day strong { color: var(--brand-orange); }
+        .footer-map-container { height: 275px; border-radius: 20px; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-sm); }
+        .copyright-bar { margin-top: 70px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 25px; font-size: 0.85rem; color: var(--text-muted); text-align: center; }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; background: var(--brand-whatsapp); color: #FFFFFF;
+            border-radius: 40px; padding: 16px 28px; font-weight: 700; font-size: 0.95rem; text-decoration: none;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4); z-index: 1000; display: flex; align-items: center; gap: 10px;
+            transition: all 0.3s ease; animation: kineticPulse 2.5s infinite;
+        }
+        .whatsapp-float:hover { transform: translateY(-4px) scale(1.02); background: #22c35e; }
+        @keyframes kineticPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5), 0 10px 25px rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0), 0 10px 25px rgba(37, 211, 102, 0.4); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 10px 25px rgba(37, 211, 102, 0.4); }
+        }
+
+        /* COOKIE BANNER */
+        #cookie-banner {
+            position: fixed; bottom: 20px; left: 20px; max-width: 400px;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px);
+            border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); z-index: 9999;
+            transform: translateY(150%); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #cookie-banner.show { transform: translateY(0); }
+        #cookie-banner h4 { font-size: 1.1rem; margin-bottom: 10px; color: var(--text-primary); display: flex; align-items: center; gap: 8px;}
+        #cookie-banner p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5; }
+        .cookie-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-cookie { flex: 1; text-align: center; padding: 10px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; border: none; }
+        .btn-accept { background: var(--brand-blue); color: #fff; }
+        .btn-accept:hover { background: #0085C0; }
+        .btn-decline { background: #E2E8F0; color: var(--text-primary); }
+        .btn-decline:hover { background: #CBD5E1; }
+
+        /* PRIVACY POLICY MODAL */
+        #privacy-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(8px);
+            z-index: 10000; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        #privacy-modal.open { opacity: 1; pointer-events: auto; }
+        .modal-content {
+            background: #fff; width: 90%; max-width: 700px; max-height: 85vh;
+            border-radius: 24px; padding: 40px; overflow-y: auto; position: relative;
+            transform: translateY(20px); transition: transform 0.3s ease; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        #privacy-modal.open .modal-content { transform: translateY(0); }
+        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; background: none; border: none; padding: 5px; }
+        .close-modal:hover { color: var(--brand-orange); }
+        .modal-content h2 { margin-bottom: 20px; font-family: var(--font-display); color: var(--brand-blue); }
+        .modal-content h3 { font-size: 1.1rem; margin: 20px 0 10px 0; color: var(--text-primary); }
+        .modal-content p, .modal-content li { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 10px; line-height: 1.6; }
+        .modal-content ul { padding-left: 20px; margin-bottom: 15px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) { 
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } 
+            .bento-medium-1, .bento-medium-2 { grid-column: span 12; } 
+            .hero { padding: 60px 5%; gap: 30px; }
+        }
+        @media (max-width: 992px) { 
+            .hero { flex-direction: column; text-align: center; }
+            .hero-text-side { text-align: center; }
+            .hero-image-side::after { display: none; }
+            .hero p.subtitle { margin: 0 auto; }
+        }
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 15px; background: rgba(255, 255, 255, 0.95); }
+            .header-buttons { flex-wrap: wrap; justify-content: center; width: 100%; gap: 8px; }
+            .btn-header { flex: 1; min-width: 140px; justify-content: center; font-size: 0.8rem; padding: 10px; }
+            
+            .hero { padding: 30px 5% 50px 5%; gap: 30px; }
+            .hero h1 { font-size: 2.2rem; }
+            
+            .section-title { font-size: 2rem; margin-bottom: 40px; }
+            .mission { padding: 40px 5%; } .mission-grid { gap: 15px; } .mission-card { padding: 25px; border-radius: 16px; } .bento-large { border-top: 4px solid var(--brand-blue); }
+            .services { padding: 40px 5%; } .services-grid { gap: 20px; } .service-category { padding: 25px; border-radius: 16px; }
+            
+            /* Responsive Gallery Updates */
+            .gallery-wrapper { padding: 20px 15px; }
+            .gallery-track { gap: 15px; }
+            .gallery-set { gap: 15px; }
+            .gallery-set img { height: 220px; }
+
+            .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 45px; }
+            .footer-logo-col { align-items: center; } .footer-logo-col p.description { border-left: none; padding-left: 0; text-align: center; }
+            footer h4::after { left: 50%; transform: translateX(-50%); } .footer-map-container { max-width: 100%; height: 280px; }
+            .whatsapp-float { bottom: 15px; left: 5%; right: 5%; width: 90%; justify-content: center; border-radius: 16px; padding: 15px; font-size: 1rem; text-align: center; animation: none; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); }
+            footer { padding-bottom: 90px; }
+            #cookie-banner { bottom: 80px; left: 5%; right: 5%; max-width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <header>
+        <div class="logo-container">
+            <img src="WhatsApp Image 2026-06-25 at 14.28.39.jpeg" alt="Centro Medico La Cava">
+        </div>
+        <div class="header-buttons">
+            <a href="https://wa.me/393513470580?text=Vorrei%20chiedere%20informazioni%20o%20fissare%20un%20appuntamento." target="_blank" rel="noopener noreferrer" class="btn-header btn-whatsapp-header">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WHATSAPP
+            </a>
+            <a href="https://www.instagram.com/centromedicolacava?igsh=MXBoZjZsejF2MzVoeA==" target="_blank" rel="noopener noreferrer" class="btn-header btn-instagram">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                INSTAGRAM
+            </a>
+            <a href="tel:3513470580" class="btn-header btn-call">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                CHIAMA
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text-side">
+            <div class="hero-badge">Sinergia Medica e Benessere</div>
+            <h1>Centro Medico e Fisioterapico <span style="white-space: nowrap;">"LA CAVA"</span></h1>
+            <p class="director">Dir. Sanitario Dott. Valsecchi Leonardo O.</p>
+            <p class="subtitle">Tecnologie d'avanguardia e percorsi terapeutici personalizzati per il ripristino ottimale del tuo potenziale biologico e motorio.</p>
+        </div>
+        <div class="hero-image-side">
+            <img src="WhatsApp Image 2026-07-05 at 19.45.03.jpeg" alt="Reception Centro Medico La Cava">
+        </div>
+    </section>
+
+    <section class="mission">
+        <p class="section-label">Filosofia Operativa</p>
+        <h2 class="section-title">La Nostra Mission</h2>
+        <div class="mission-grid">
+            <div class="mission-card bento-large">
+                <div class="mission-icon-wrapper" style="color: var(--brand-blue);">🎯</div>
+                <h3>Obiettivo Principale del Centro</h3>
+                <p>Il Centro Medico e Fisioterapico "La Cava" si costituisce come polo d'eccellenza dedicato al benessere integrale del paziente. Garantiamo risposte terapeutiche tempestive, etiche e guidate da una rigorosa professionalità specialistica.</p>
+            </div>
+            <div class="mission-card bento-medium-1">
+                <div class="mission-icon-wrapper" style="color: var(--brand-orange);">💎</div>
+                <h3>Soddisfazione dell'Utenza</h3>
+                <p>Perseguiamo la massima soddisfazione clinica, erogando prestazioni moderne attraverso l'ottimizzazione delle risorse e l'impiego di tecnologie di ultima generazione.</p>
+            </div>
+            <div class="mission-card bento-medium-2">
+                <div class="mission-icon-wrapper" style="color: var(--brand-green);">🤝</div>
+                <h3>Alleanza Terapeutica</h3>
+                <p>Fondiamo il successo su una sinergia profonda tra equipe medica e paziente, assicurando la massima accuratezza nella valutazione diagnostica e nel trattamento.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <p class="section-label">Aree Cliniche di Intervento</p>
+        <h2 class="section-title">I Nostri Servizi</h2>
+        <div class="services-grid">
+            
+            <div class="service-category">
+                <h3>Visite Specialistiche <span class="icon">🩺</span></h3>
+                <ul>
+                    <li><strong>Ortopedia e Traumatologia</strong><span class="service-desc">Soluzioni integrate per mantenere un movimento efficiente.</span></li>
+                    <li><strong>Reumatologia</strong><span class="service-desc">Diagnosi e gestione malattie Reumatiche (Artrite - Artrosi - Osteoporosi - alterazioni metaboliche).</span></li>
+                    <li><strong>Otorinolaringoiatra</strong><span class="service-desc">Naso - Orecchie - Bocca - Gola.</span></li>
+                    <li><strong>Osteopatia</strong><span class="service-desc">Mezzo di riequilibrio Fisico Posturale.</span></li>
+                    <li><strong>Nutrizionista</strong><span class="service-desc">Corretta educazione alimentare per raggiungere un benessere Psicofisico.</span></li>
+                    <li><strong>Ossigeno - Ozonoterapia</strong></li>
+                    <li><strong>Infiltrazioni Ecoguidate</strong></li>
+                </ul>
+            </div>
+
+            <div class="service-category">
+                <h3>Servizi Fisioterapici <span class="icon">🙌</span></h3>
+                <ul>
+                    <li>Terapie Manuali Integrate</li>
+                    <li>Riprogrammazione Posturale</li>
+                    <li>Trattamenti Osteopatici</li>
+                    <li>Fisiokinesiterapia (F.K.T)</li>
+                    <li>Massoterapia Riabilitativa</li>
+                    <li>Linfodrenaggio Clinico</li>
+                    <li>Massaggio Sportivo</li>
+                    <li>Ginnastica Posturale & Antalgica</li>
+                </ul>
+            </div>
+
+            <div class="service-category">
+                <h3>Terapie Riabilitative <span class="icon">⚡</span></h3>
+                <ul>
+                    <li>Riabilitazione Pre/Post Chirurgica</li>
+                    <li>Riabilitazione Post Traumatica</li>
+                    <li>Rieducazione Propriocettiva</li>
+                    <li>Riabilitazione Sportiva</li>
+                    <li>Servizio a Domicilio</li>
+                </ul>
+            </div>
+
+            <div class="service-category">
+                <h3>Terapie Fisiche <span class="icon">🔬</span></h3>
+                <ul>
+                    <li>Tecar Terapia ad Alta Efficacia</li>
+                    <li>Magnetoterapia Distrettuale</li>
+                    <li>Ultrasuonoterapia</li>
+                    <li>Laser Terapia Ad Alta Potenza</li>
+                    <li>Onde d'Urto Focali</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERIA INTERATTIVA CON STRUTTURA A BLOCCHI -->
+    <section class="gallery">
+        <p class="section-label">Scopri gli Ambienti</p>
+        <h2 class="section-title">Il Centro</h2>
+        
+        <div style="position: relative;">
+            <div class="gallery-fade-left"></div>
+            <div class="gallery-fade-right"></div>
+            
+            <div class="gallery-wrapper" id="gallery-wrapper">
+                <div class="gallery-track" id="gallery-track">
+                    
+                    <!-- Primo Blocco (Usato da JS per il calcolo esatto del loop) -->
+                    <div class="gallery-set" id="first-set">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.49.jpeg" alt="Il Centro - Area 1">
+                        <img src="WhatsApp Image 2026-07-05 at 19.45.03.jpeg" alt="Il Centro - Area 2">
+                        <img src="WhatsApp Image 2026-07-05 at 19.45.02.jpeg" alt="Il Centro - Area 3">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.58 (1).jpeg" alt="Il Centro - Area 4">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.58.jpeg" alt="Il Centro - Area 5">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.54.jpeg" alt="Il Centro - Area 6">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.54 (1).jpeg" alt="Il Centro - Area 7">
+                    </div>
+                    
+                    <!-- Secondo Blocco -->
+                    <div class="gallery-set">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.49.jpeg" alt="Il Centro - Area 1">
+                        <img src="WhatsApp Image 2026-07-05 at 19.45.03.jpeg" alt="Il Centro - Area 2">
+                        <img src="WhatsApp Image 2026-07-05 at 19.45.02.jpeg" alt="Il Centro - Area 3">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.58 (1).jpeg" alt="Il Centro - Area 4">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.58.jpeg" alt="Il Centro - Area 5">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.54.jpeg" alt="Il Centro - Area 6">
+                        <img src="WhatsApp Image 2026-07-05 at 19.44.54 (1).jpeg" alt="Il Centro - Area 7">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/393513470580?text=Vorrei%20chiedere%20informazioni%20o%20fissare%20un%20appuntamento." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>FISSA UN APPUNTAMENTO</span>
+    </a>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-logo-col">
+                <img src="WhatsApp Image 2026-06-25 at 14.28.39.jpeg" alt="Logo Clinico La Cava">
+                <p class="description">"Medicina riabilitativa, eccellenza diagnostica e percorsi di riattivazione motoria personalizzati con tecnologie di ultima generazione."</p>
+            </div>
+            
+            <div>
+                <h4>Contatti & Sede</h4>
+                <p class="info-item">📞 <strong>Tel:</strong> <a href="tel:3513470580" class="footer-link">351 3470580</a></p>
+                <p class="info-item">✉️ <strong>Email:</strong> <a href="mailto:centromedicolacava@gmail.com" class="footer-link">centromedicolacava@gmail.com</a></p>
+                <p class="info-item" style="margin-top: 20px; display: block;">
+                    📍 <strong>Sede Operativa:</strong><br>Via Cava di Sopra, 19<br>24030 Caprino Bergamasco (BG)
+                </p>
+            </div>
+            
+            <div>
+                <h4>Orari di Apertura</h4>
+                <ul class="hours-list">
+                    <li><span>Lunedì</span> <strong>08:00 – 21:00</strong></li>
+                    <li><span>Martedì</span> <strong>08:00 – 20:00</strong></li>
+                    <li><span>Mercoledì</span> <strong>08:00 – 21:00</strong></li>
+                    <li><span>Giovedì</span> <strong>08:00 – 20:00</strong></li>
+                    <li><span>Venerdì</span> <strong>08:00 – 20:00</strong></li>
+                    <li class="closed-day"><span>Sabato</span> <strong>Chiuso</strong></li>
+                    <li class="closed-day"><span>Domenica</span> <strong>Chiuso</strong></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4>Geolocalizzazione</h4>
+                <div class="footer-map-container">
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://maps.google.com/maps?q=Via%20Cava%20di%20Sopra,%2019,%2024030%20Caprino%20Bergamasco%20BG&t=k&z=17&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright-bar">
+            © 2026 Centro Medico e Fisioterapico "La Cava". Tutti i diritti riservati. <br>
+            <!-- Tasto per aprire la modale della privacy -->
+            <span style="font-size: 0.8rem; margin-top: 10px; display: inline-block;">
+                <a href="#" id="open-privacy" class="footer-link" style="color: var(--text-muted); text-decoration: underline;">Informativa Privacy & Cookie Policy</a>
+            </span>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner">
+        <h4>🍪 La tua Privacy è importante</h4>
+        <p>Utilizziamo cookie tecnici per il corretto funzionamento del sito e cookie di terze parti (come Google Maps) per migliorare la tua esperienza. Puoi scegliere se accettarli tutti o solo quelli essenziali.</p>
+        <div class="cookie-buttons">
+            <button class="btn-cookie btn-decline" onclick="acceptCookies('essential')">Solo Essenziali</button>
+            <button class="btn-cookie btn-accept" onclick="acceptCookies('all')">Accetta Tutti</button>
+        </div>
+    </div>
+
+    <!-- PRIVACY POLICY MODAL -->
+    <div id="privacy-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-privacy">×</button>
+            <h2>Informativa sulla Privacy e Cookie Policy</h2>
+            <p><em>Ultimo aggiornamento: Giugno 2026</em></p>
+            
+            <h3>1. Titolare del Trattamento</h3>
+            <p>Il Titolare del trattamento dei dati è il <strong>Centro Medico e Fisioterapico "La Cava"</strong> (Dir. San. Dott. Valsecchi Leonardo O.), con sede in Via Cava di Sopra, 19, 24030 Caprino Bergamasco (BG). Contatti: Email centromedicolacava@gmail.com, Telefono 351 3470580.</p>
+            
+            <h3>2. Tipologia di Dati Trattati</h3>
+            <ul>
+                <li><strong>Dati di navigazione:</strong> I sistemi informatici preposti al funzionamento di questo sito web acquisiscono alcuni dati personali la cui trasmissione è implicita nell'uso dei protocolli di comunicazione di Internet (es. indirizzi IP).</li>
+                <li><strong>Dati forniti volontariamente:</strong> L'invio facoltativo ed esplicito di posta elettronica o messaggi WhatsApp ai recapiti indicati comporta la successiva acquisizione dell'indirizzo del mittente/numero di telefono, necessario per rispondere alle richieste.</li>
+            </ul>
+
+            <h3>3. Cookie Policy</h3>
+            <p>Questo sito utilizza le seguenti tipologie di cookie:</p>
+            <ul>
+                <li><strong>Cookie Tecnici (Essenziali):</strong> Necessari per il corretto funzionamento del sito. Non richiedono il consenso dell'utente.</li>
+                <li><strong>Cookie di Terze Parti:</strong> Il sito integra servizi esterni come le mappe di <em>Google Maps</em>. Questi servizi potrebbero impostare cookie propri per il tracciamento e la profilazione.</li>
+            </ul>
+
+            <h3>4. Finalità del Trattamento</h3>
+            <p>I dati raccolti sono trattati esclusivamente per consentire la corretta navigazione sul sito web, rispondere alle richieste di informazioni o di prenotazione appuntamenti e adempiere agli obblighi di legge.</p>
+
+            <h3>5. Diritti dell'Utente (GDPR)</h3>
+            <p>Ai sensi del Regolamento (UE) 2016/679, l'utente ha il diritto di chiedere al Titolare l'accesso ai propri dati personali, la rettifica, la cancellazione, la limitazione del trattamento o di opporsi ad esso. Le richieste vanno rivolte ai contatti del Titolare indicati al punto 1.</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT GLOBALE -->
+    <script>
+        // LOGICA COOKIE E MODALE PRIVACY
+        document.addEventListener("DOMContentLoaded", function() {
+            const cookieBanner = document.getElementById("cookie-banner");
+            if (!localStorage.getItem("cookieConsent")) {
+                setTimeout(() => { cookieBanner.classList.add("show"); }, 1000);
+            }
+        });
+
+        function acceptCookies(type) {
+            localStorage.setItem("cookieConsent", type);
+            document.getElementById("cookie-banner").classList.remove("show");
+        }
+
+        const modal = document.getElementById("privacy-modal");
+        const openBtn = document.getElementById("open-privacy");
+        const closeBtn = document.getElementById("close-privacy");
+
+        openBtn.addEventListener("click", function(e) { e.preventDefault(); modal.classList.add("open"); });
+        closeBtn.addEventListener("click", function() { modal.classList.remove("open"); });
+        modal.addEventListener("click", function(e) { if (e.target === modal) { modal.classList.remove("open"); } });
+
+        // LOGICA GALLERIA INFINITA CON DRAG & TOUCH (Risolto stuttering e velocità mouse)
+        const galleryWrapper = document.getElementById('gallery-wrapper');
+        const galleryTrack = document.getElementById('gallery-track');
+        const firstSet = document.getElementById('first-set');
+        
+        let isInteracting = false;
+        let isDragging = false;
+        let startX;
+        let initialScrollLeft;
+        
+        function autoScrollGallery() {
+            if (!isInteracting) {
+                galleryWrapper.scrollLeft += 1; 
+                
+                // Calcola lo spazio esatto (larghezza primo blocco + gap CSS)
+                const gap = parseInt(window.getComputedStyle(galleryTrack).gap) || 0;
+                const resetPoint = firstSet.offsetWidth + gap;
+                
+                if (galleryWrapper.scrollLeft >= resetPoint) {
+                    galleryWrapper.scrollLeft -= resetPoint; // Reset matematico perfetto al pixel
+                }
+            }
+            requestAnimationFrame(autoScrollGallery);
+        }
+        
+        autoScrollGallery();
+
+        const pauseScroll = () => { isInteracting = true; };
+        const resumeScroll = () => { setTimeout(() => { if(!isDragging) isInteracting = false; }, 800); };
+
+        galleryWrapper.addEventListener('mouseenter', pauseScroll);
+        galleryWrapper.addEventListener('mouseleave', resumeScroll);
+        galleryWrapper.addEventListener('touchstart', pauseScroll, {passive: true});
+        galleryWrapper.addEventListener('touchend', resumeScroll);
+
+        galleryWrapper.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            isInteracting = true;
+            galleryWrapper.style.cursor = 'grabbing';
+            startX = e.pageX - galleryWrapper.offsetLeft;
+            initialScrollLeft = galleryWrapper.scrollLeft;
+        });
+
+        galleryWrapper.addEventListener('mouseleave', () => {
+            isDragging = false;
+            galleryWrapper.style.cursor = 'grab';
+        });
+
+        galleryWrapper.addEventListener('mouseup', () => {
+            isDragging = false;
+            galleryWrapper.style.cursor = 'grab';
+            resumeScroll();
+        });
+
+        galleryWrapper.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - galleryWrapper.offsetLeft;
+            // Sensibilità rallentata e più controllata (moltiplicatore da 2 a 0.8)
+            const walk = (x - startX) * 0.8; 
+            galleryWrapper.scrollLeft = initialScrollLeft - walk;
+        });
+    </script>
+</body>
+</html>
